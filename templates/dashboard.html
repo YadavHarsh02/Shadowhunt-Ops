@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+  <!-- Health Check -->
+  <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800">
+    <h2 class="font-semibold mb-3">Health Check</h2>
+    <button id="btn-health" class="px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500">Ping API</button>
+    <pre id="health-out" class="mt-3 text-xs bg-black/40 p-3 rounded"></pre>
+  </div>
+
+  <!-- Simulated Brute Force -->
+  <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800">
+    <h2 class="font-semibold mb-3">Brute-Force (Simulated)</h2>
+    <input id="bf-target" class="w-full mb-2 p-2 rounded bg-slate-800 border border-slate-700" placeholder="http://127.0.0.1:5000/login">
+    <input id="bf-username" class="w-full mb-2 p-2 rounded bg-slate-800 border border-slate-700" placeholder="Username">
+    <input id="bf-wordlist" class="w-full mb-2 p-2 rounded bg-slate-800 border border-slate-700" placeholder="Comma-separated passwords, e.g., 1234,password,admin123">
+    <button id="btn-bf" class="px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500">Run</button>
+    <pre id="bf-out" class="mt-3 text-xs bg-black/40 p-3 rounded max-h-72 overflow-auto"></pre>
+  </div>
+
+  <!-- SQLi Module -->
+  <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800">
+    <h2 class="font-semibold mb-3">SQLi (Simulated)</h2>
+    <input id="sqli-url" class="w-full mb-2 p-2 rounded bg-slate-800 border border-slate-700" placeholder="http://127.0.0.1/item?id=1">
+    <button id="btn-sqli" class="px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500">Run</button>
+    <pre id="sqli-out" class="mt-3 text-xs bg-black/40 p-3 rounded max-h-44 overflow-auto"></pre>
+  </div>
+
+  <!-- NTLM Extractor Module -->
+  <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800">
+    <h2 class="font-semibold mb-3">NTLM Extractor (Simulated)</h2>
+    <input id="ntlm-sample" class="w-full mb-2 p-2 rounded bg-slate-800 border border-slate-700" placeholder="Sample NTLM hash/file">
+    <button id="btn-ntlm" class="px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500">Run</button>
+    <pre id="ntlm-out" class="mt-3 text-xs bg-black/40 p-3 rounded max-h-44 overflow-auto"></pre>
+  </div>
+
+  <!-- Recon Scanner Module -->
+  <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800">
+    <h2 class="font-semibold mb-3">Recon Scanner (Simulated)</h2>
+    <input id="recon-host" class="w-full mb-2 p-2 rounded bg-slate-800 border border-slate-700" placeholder="Host, e.g., 127.0.0.1">
+    <input id="recon-ports" class="w-full mb-2 p-2 rounded bg-slate-800 border border-slate-700" placeholder="Ports (comma-separated, e.g., 80,443)">
+    <button id="btn-recon" class="px-3 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500">Run</button>
+    <pre id="recon-out" class="mt-3 text-xs bg-black/40 p-3 rounded max-h-44 overflow-auto"></pre>
+  </div>
+
+  <!-- Logs -->
+  <div class="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 md:col-span-2 lg:col-span-3">
+    <h2 class="font-semibold mb-3">Logs</h2>
+    <button id="btn-logs" class="px-3 py-2 rounded-lg bg-sky-600 hover:bg-sky-500">Refresh Logs</button>
+    <pre id="logs-out" class="mt-3 text-xs bg-black/40 p-3 rounded max-h-72 overflow-auto"></pre>
+  </div>
+
+</div>
+{% endblock %}

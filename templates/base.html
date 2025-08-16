@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ShadowHunt Ops</title>
+  <!-- Tailwind CDN (ok for dev) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100">
+  <div class="max-w-5xl mx-auto p-6">
+    <div class="rounded-2xl bg-slate-900/60 border border-slate-800 p-5 mb-6">
+      <h1 class="text-2xl font-bold">ShadowHunt Ops <span class="text-emerald-400">[DEV SIMULATION]</span></h1>
+      <p class="text-sm text-slate-400 mt-1">For lab/test targets only. No real attacks executed in this build.</p>
+    </div>
+    {% block content %}{% endblock %}
+  </div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
