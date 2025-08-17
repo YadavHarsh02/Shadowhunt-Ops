@@ -24,7 +24,7 @@ def create_app():
         return jsonify({
             "status": "ok",
             "message": "ShadowHunt Ops API up",
-            "test_mode": app.config.get("TEST_MODE", True)  # FIX: default True
+            "test_mode": app.config.get("TEST_MODE", True)  # default True
         })
 
     @app.route("/api/logs", methods=["GET"])
@@ -88,7 +88,6 @@ def create_app():
 
 
 def _extract_target(payload: dict) -> str:
-    # Try to pull a host/URL field for logging
     for k in ("url", "target", "host"):
         if k in payload and payload[k]:
             v = payload[k]
@@ -102,18 +101,18 @@ def _extract_target(payload: dict) -> str:
 
 
 def _is_allowed_target(cfg, module: str, payload: dict) -> bool:
-    # For Brute-Force and SQLi in DEV, skip allowlist
     if module in ["brute-force", "sql-injection"]:
         return True
-
-    # For other modules, allow only localhost/127.0.0.1
     t = _extract_target(payload)
     host = t.split(":")[0]
     return host in getattr(cfg, "ALLOWLIST_TARGETS", set())
 
 
+# --- IMPORTANT FIX ---
+# Create global app instance for Gunicorn (Render)
+app = create_app()
+
 if __name__ == "__main__":
-    app = create_app()
     with app.app_context():
         db.create_all()
-app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
