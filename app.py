@@ -7,6 +7,7 @@ from reports.generator import generate_simple_report
 from datetime import datetime
 import json
 from urllib.parse import urlparse
+import os
 
 def create_app():
     app = Flask(__name__, template_folder="templates", static_folder="static")
@@ -115,4 +116,4 @@ if __name__ == "__main__":
     app = create_app()
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
